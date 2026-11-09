@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup - HireMe AI</title>
+<style>
+body{margin:0; font-family:Arial; background:#0A1128; color:white; text-align:center; min-height:100vh;}
+.box{background:white; color:black; width:340px; margin:20px auto; padding:25px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+input{width:90%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:10px; font-size:16px;}
+button{width:95%; padding:13px; background:#22C55E; color:white; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer; margin-top:10px;}
+button:hover{background:#16A34A;}
+a{color:#4F7CFF; text-decoration:none; font-weight:bold;}
+#msg{font-weight:bold; margin-top:10px; min-height:20px;}
+.logo{font-size:28px; font-weight:bold; margin-top:20px;}
+.logo span{color:#4F7CFF;}
+</style>
+</head>
+<body>
+
+<a href="index.html" style="position:fixed; top:15px; left:15px; background:white; color:black; padding:8px 15px; border-radius:20px; text-decoration:none; font-weight:bold; font-size:14px;">🏠 Home</a>
+<a href="index.html" style="position:fixed; top:15px; right:15px; background:#FF3B3B; color:white; padding:8px 14px; border-radius:50%; text-decoration:none; font-weight:bold;">✕</a>
+
+<a href="index.html" style="text-decoration:none; color:white;"><div class="logo">HireMe <span>AI</span></div></a>
+<p>Create Account - Start Your Practice!</p>
+
+<div class="box">
+<h2>Create Account</h2>
+<input type="text" id="name" placeholder="Enter Your Name">
+<input type="email" id="email" placeholder="Enter Email - ex: test@gmail.com">
+<input type="password" id="pass" placeholder="Create Password - Only Numbers">
+<input type="password" id="cpass" placeholder="Confirm Password">
+<button onclick="signup()">Create Account</button>
+<p id="msg"></p>
+<p>Already have an account? <a href="login.html">Login Here</a></p>
+</div>
+
+<script>
+function signup(){
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let pass=document.getElementById("pass").value;
+let cpass=document.getElementById("cpass").value;
+let msg=document.getElementById("msg");
+if(name==""||email==""||pass==""||cpass==""){msg.innerText="Please fill all boxes!";msg.style.color="red";return;}
+if(!email.endsWith("@gmail.com")){msg.innerText="Email must end with @gmail.com!";msg.style.color="red";return;}
+if(!/^[0-9]+$/.test(pass)){msg.innerText="Password must be Only Numbers!";msg.style.color="red";return;}
+if(pass.length<4||pass.length>8){msg.innerText="Password must be 4-8 numbers!";msg.style.color="red";return;}
+if(pass!=cpass){msg.innerText="Passwords do not match!";msg.style.color="red";return;}
+msg.innerText="Account Created Successfully! Welcome "+name+"!";msg.style.color="green";
+localStorage.setItem("userName",name);
+localStorage.setItem("userEmail",email);
+setTimeout(function(){window.location.href="login.html";},1500);
+}
+</script>
+</body>
+</html>
